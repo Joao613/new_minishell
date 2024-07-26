@@ -6,7 +6,7 @@
 /*   By: joamonte <joamonte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:39:06 by joamonte          #+#    #+#             */
-/*   Updated: 2024/06/22 21:41:53 by jcapistr         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:20:12 by joamonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_valid(char *arg)
 	int	i;
 
 	i = 0;
-	if (arg[i] == '-')
+	if (arg[i] == '-' || arg[i] == '+')
 		i++;
 	if (!arg[i])
 		return (0);
