@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joamonte <joamonte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: joamonte <joamonte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:39:06 by joamonte          #+#    #+#             */
-/*   Updated: 2024/07/24 17:31:08 by joamonte         ###   ########.fr       */
+/*   Updated: 2024/07/26 13:18:29 by joamonte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	check_args(char **args)
 {
 	if (args[2])
 	{
-		printf("cd Error : Wrong number of arguments\n");
+		ft_putstr_fd("cd: too many arguments\n", STDERR_FILENO);
 		return (-1);
 	}
 	return (0);
@@ -50,7 +50,7 @@ static int	change_to_home(void)
 	homedir = ft_getenv("HOME");
 	if (!homedir)
 	{
-		printf("cd ERROR: HOME not set\n");
+		ft_putstr_fd("cd ERROR: HOME not set\n", STDERR_FILENO);
 		return (free(homedir), 1);
 	}
 	chdir(homedir);
@@ -76,7 +76,7 @@ int	ft_cd(char **args)
 
 	old_pwd = ft_getenv("OLDPWD");
 	if (check_args(args) == -1)
-		return (free(old_pwd), -1);
+		return (free(old_pwd), 1);
 	set_pwd(2);
 	if (!args[1] || (args[1][0] == '~' && !args[1][1]))
 		return (free(old_pwd), change_to_home());
